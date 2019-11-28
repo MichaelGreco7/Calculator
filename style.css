@@ -96,7 +96,16 @@ button:hover {
   color: #fff;
 }
 
-/* equal-sign hover */
+/* lighter color when hovering */
 .equal-sign:hover {
   background-color: #4e9ed4;
+}
+
+/* Setup .calculator-keys container to use Grid layout */
+.calculator-keys {
+  display: grid;
+  /* place the keys in four columns of equal width */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* add some space between the butttons */
+  grid-gap: 20px;
 }
