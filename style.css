@@ -94,6 +94,19 @@ button:hover {
   background-color: #2e86c0;
   border-color: #337cac;
   color: #fff;
+  /* set the height to 100% so that the button stretches all
+  the way to the end of the container. */
+  height: 100%;
+  /* move the Equals button to Row 2 / Column 4 
+  and make it span four rows */
+  grid-row-start: 2;
+  grid-row-end: 6;
+  /* We need to move it to the last column between grid lines 4 and 5 */
+  grid-column-start: 4;
+  grid-column-end: 5;
+
+  /* ShortHand grid-row: 2 / 6;
+  grid-column: 4 / 5; */
 }
 
 /* lighter color when hovering */
@@ -108,4 +121,7 @@ button:hover {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   /* add some space between the butttons */
   grid-gap: 20px;
+  /* add some space between the buttons and the edges of the 
+  grid container as well as the calculator screen */
+  padding: 20px;
 }
