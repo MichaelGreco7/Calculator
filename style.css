@@ -1,9 +1,3 @@
-/* CSS reset */
-/* This sets the margin and padding of every HTML element to zero
- and the box-sizing: border-box; 
- declaration changes the box model by ensuring that the padding and border 
- of an element no longer increases its width. */
-
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -17,9 +11,6 @@ html {
   box-sizing: inherit;
 }
 
-/* absolutely center the calculator on the page 
-give it a border and fixed width */
-
 .calculator {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -29,8 +20,6 @@ give it a border and fixed width */
   transform: translate(-50%, -50%);
   width: 400px;
 }
-
-/* Calculator Screen */
 
 .calculator-screen {
   width: 100%;
@@ -43,8 +32,6 @@ give it a border and fixed width */
   padding-right: 20px;
   padding-left: 10px;
 }
-
-/* Styling Buttons */
 
 button {
   height: 60px;
@@ -67,61 +54,39 @@ button {
   text-shadow: 0 1px rgba(255, 255, 255, 0.4);
 }
 
-/* When mouse hovers change color */
 button:hover {
-  background-color: #337cac;
+  background-color: #eaeaea;
 }
 
-/* Operators Blue */
 .operator {
   color: #337cac;
 }
 
-/* all-clear red */
 .all-clear {
   background-color: #f0595f;
   border-color: #b0353a;
   color: #fff;
 }
 
-/* light color when hovering */
 .all-clear:hover {
   background-color: #f17377;
 }
 
-/* equal-sign  */
 .equal-sign {
   background-color: #2e86c0;
   border-color: #337cac;
   color: #fff;
-  /* set the height to 100% so that the button stretches all
-  the way to the end of the container. */
   height: 100%;
-  /* move the Equals button to Row 2 / Column 4 
-  and make it span four rows */
-  grid-row-start: 2;
-  grid-row-end: 6;
-  /* We need to move it to the last column between grid lines 4 and 5 */
-  grid-column-start: 4;
-  grid-column-end: 5;
-
-  /* ShortHand grid-row: 2 / 6;
-  grid-column: 4 / 5; */
+  grid-area: 2 / 4 / 6 / 5;
 }
 
-/* lighter color when hovering */
 .equal-sign:hover {
   background-color: #4e9ed4;
 }
 
-/* Setup .calculator-keys container to use Grid layout */
 .calculator-keys {
   display: grid;
-  /* place the keys in four columns of equal width */
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  /* add some space between the butttons */
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
-  /* add some space between the buttons and the edges of the 
-  grid container as well as the calculator screen */
   padding: 20px;
 }
