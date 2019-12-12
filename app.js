@@ -69,6 +69,7 @@ console.log(calculator);
 // displayed on the screen except if it already contains a decimal point.
 
 function inputDecimal(dot) {
+  if (calculator.waitingForSecondOperand === true) return;
   // If the 'displayValue' does not contain a deimal point
   if (!calculator.displayValue.includes(dot)) {
     // Append the decimal point
@@ -148,3 +149,6 @@ function resetCalculator() {
   calculator.operator = null;
   console.log(calculator);
 }
+
+// One more thing
+// There’s a bug that allows you to add a decimal point to the displayValue after clicking on an operator.
