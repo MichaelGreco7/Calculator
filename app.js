@@ -26,7 +26,8 @@ keys.addEventListener("click", event => {
     return;
   }
   if (target.classList.contains("operator")) {
-    console.log("operator", target.value);
+    handleOperator(target.value);
+    updateDisplay();
     return;
   }
   if (target.classList.contains("decimal")) {
@@ -48,10 +49,18 @@ keys.addEventListener("click", event => {
 // Inputting the digits
 
 function inputDigit(digit) {
-  const { displayValue } = calculator;
-  // Overwrite 'displayValue' if the current value is '0' otherwise append to it.
-  calculator.displayValue = displayValue === "0" ? digit : displayValue + digit;
+  const { displayValue, waitingForSecondOperand } = calculator;
+
+  if (waitingForSecondOperand == true) {
+    calculator.displayValue = digit;
+    calculator.waitingForSecondOperand = false;
+  } else {
+    // Overwrite 'displayValue' if the current value is '0' otherwise append to it.
+    calculator.displayValue =
+      displayValue === "0" ? digit : displayValue + digit;
+  }
 }
+console.log(calculator);
 
 // Inputting a decimal point
 
@@ -65,3 +74,49 @@ function inputDecimal(dot) {
     calculator.displayValue += dot;
   }
 }
+
+// Handling Operators
+// The next step is to get the operators (+, -, x, /, =) on the calculator working. There are three scenarios to account for:
+
+// When the user finishes entering the first operand and hits an operator
+// This indicates that he/she is ready to enter the second operand.
+// What we need to do here is store the first operand and update the display with the new string of numbers.
+
+function handleOperator(nextOperator) {
+  // This function return the result which is then stored in the result variable
+  // We then display the result to the user by updating the displayValue
+  // with this result and also set the firstOperand to the result.
+  const { firstOperand, displayValue, operator } = calculator;
+  const inputValue = parseFloat(displayValue); // When an operator key is pressed, we convert the current number displayed on the screen to a number
+  // then store the result in calculator.firstOperand if it does not exist already.
+  if (firstOperand === null) {
+    calculator.firstOperand = inputValue;
+  } else if (operator) {
+    // checks if an operator already exists. If so, property lookup is performed for the operator in the performCalculation object
+    const result = performCalculation[operator](firstOperand, inputValue); // the function that matches the operator is executed.
+
+    calculator.displayValue = String(result);
+    calculator.firstOperand = result;
+  }
+
+  calculator.waitingForSecondOperand = true; // We also set calculator.waitingForSecondOperand to true which indicates that the first operand has been entered and the second one is ready to begin
+  calculator.operator = nextOperator; // and calculator.operator to whatever operator key was clicked.
+}
+console.log(calculator);
+
+// Handling Operators
+// When the user finishes the second operand and hits an operator
+// The second scenario we want to handle is if the user has finished entering the second operand and an operator key is clicked.
+// At this point, all the ingredients to perform a valid calculation is present so we need to display the result of the calculation to the user.
+
+// After 12 + 10, let’s say the user hits the = button. What should happen?
+// Well 22 should be presented on the screen as the result of the calculation and
+// the firstOperand should be updated to the result so that it can be used in the next calculation.
+
+// Then create a new object called performCalculation with the following properties
+const performCalculation = {
+  "/": (firstOperand, secondOperand) => firstOperand / secondOperand,
+  "*": (firstOperand, secondOperand) => firstOperand * secondOperand,
+  "-": (firstOperand, secondOperand) => firstOperand - secondOperand,
+  "+": (firstOperand, secondOperand) => firstOperand + secondOperand
+};
