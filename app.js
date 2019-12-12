@@ -36,7 +36,8 @@ keys.addEventListener("click", event => {
     return; // Then we append the dot to the number. Otherwise, we do nothing.
   }
   if (target.classList.contains("all-clear")) {
-    console.log("clear", target.value);
+    resetCalculator(); // sets all the properties of the calculator object to their original values.
+    updateDisplay();
     return;
   }
   inputDigit(target.value);
@@ -134,5 +135,16 @@ const performCalculation = {
   "+": (firstOperand, secondOperand) => firstOperand + secondOperand
 };
 
-// Handling Operators
-// When a user enters two or more operators consecutively
+// Resetting the calculator
+
+// The final task is to make sure the user can reset the calculator to its initial state by pressing a key.
+// In most calculators, The AC button is used to reset the calculator to its default state
+// so that’s what we’re going to use here.
+
+function resetCalculator() {
+  (calculator.displayValue = "0"),
+    (calculator.firstOperand = null),
+    (calculator.waitingForSecondOperand = false);
+  calculator.operator = null;
+  console.log(calculator);
+}
