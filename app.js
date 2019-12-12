@@ -89,9 +89,21 @@ function handleOperator(nextOperator) {
   const { firstOperand, displayValue, operator } = calculator;
   const inputValue = parseFloat(displayValue); // When an operator key is pressed, we convert the current number displayed on the screen to a number
   // then store the result in calculator.firstOperand if it does not exist already.
-  if (firstOperand === null) {
+
+  //  The if statement checks if an operator already exists
+  //  and if waitingForSecondOperand has a truthy value.
+  //  We then update operator and exit from the function by using an early return statement
+  //  so that the rest of the function is not executed and no calculations are performed.
+  if (operator && calculator.waitingForSecondOperand) {
+    calculator.operator = nextOperator;
+    console.log(calculator);
+    return;
+  }
+
+  if (firstOperand == null) {
     calculator.firstOperand = inputValue;
   } else if (operator) {
+    const currentValue = firstOperand || 0;
     // checks if an operator already exists. If so, property lookup is performed for the operator in the performCalculation object
     const result = performCalculation[operator](firstOperand, inputValue); // the function that matches the operator is executed.
 
@@ -101,8 +113,9 @@ function handleOperator(nextOperator) {
 
   calculator.waitingForSecondOperand = true; // We also set calculator.waitingForSecondOperand to true which indicates that the first operand has been entered and the second one is ready to begin
   calculator.operator = nextOperator; // and calculator.operator to whatever operator key was clicked.
+
+  console.log(calculator);
 }
-console.log(calculator);
 
 // Handling Operators
 // When the user finishes the second operand and hits an operator
@@ -120,3 +133,6 @@ const performCalculation = {
   "-": (firstOperand, secondOperand) => firstOperand - secondOperand,
   "+": (firstOperand, secondOperand) => firstOperand + secondOperand
 };
+
+// Handling Operators
+// When a user enters two or more operators consecutively
