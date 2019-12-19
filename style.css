@@ -12,7 +12,7 @@ html {
 }
 
 .calculator {
-  border: 1px solid #ccc;
+  border: 3px solid #28b446;
   border-radius: 5px;
   position: absolute;
   top: 50%;
@@ -26,8 +26,8 @@ html {
   font-size: 5rem;
   height: 80px;
   border: none;
-  background-color: #252525;
-  color: #fff;
+  background-color: #fbbb00;
+  color: #f14336;
   text-align: right;
   padding-right: 20px;
   padding-left: 10px;
@@ -35,12 +35,12 @@ html {
 
 button {
   height: 60px;
-  background-color: #fff;
+  background-color: #00d2ff;
   border-radius: 3px;
-  border: 1px solid #c4c4c4;
+  border: 3px solid #c4c4c4;
   background-color: transparent;
   font-size: 2rem;
-  color: #333;
+  color: #442678;
   background-image: linear-gradient(
     to bottom,
     transparent,
@@ -55,11 +55,11 @@ button {
 }
 
 button:hover {
-  background-color: #eaeaea;
+  background-color: #707070;
 }
 
 .operator {
-  color: #337cac;
+  color: #4e2a8a;
 }
 
 .all-clear {
@@ -73,7 +73,7 @@ button:hover {
 }
 
 .equal-sign {
-  background-color: #2e86c0;
+  background-color: #442678;
   border-color: #337cac;
   color: #fff;
   height: 100%;
